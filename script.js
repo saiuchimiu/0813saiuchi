@@ -1,7 +1,7 @@
 const app = new Vue({
-  el: '#app',
+  el: '#app', // Vueが管理する一番外側のDOM要素
   vuetify: new Vuetify(),
-      data: {
+  data: {
     // Vue内部で使いたい変数は全てこの中に定義する
     ID: '', //パラメーター「ID」格納変数
     Name: '', //パラメーター「Name」格納変数
@@ -28,16 +28,16 @@ const app = new Vue({
       };
       
       //INSERT用のAPIを呼び出し
-      const response = await axios.post('https://functionapp073020250730134734.azurewebsites.net/api/INSERT?',param);
+      const response = await axios.post('※ここにINSERTのURLを記載※',param);
       
       //結果をコンソールに出力
       console.log(response.data);
-
     },
+
     // データベースからデータを取得する関数
     readData: async function() {
       //SELECT用のAPIを呼び出し      
-      const response = await axios.get('https://functionapp073020250730134734.azurewebsites.net/api/SELECT?');
+      const response = await axios.get('※ここにSELECTのURLを記載※');
       
       //結果をコンソールに出力
       console.log(response.data);
@@ -45,8 +45,8 @@ const app = new Vue({
       //結果リストを表示用配列に代入
       this.dataList = response.data.List;
     },
-  },
-      // Cookieから指定された名前の値を取得する関数
+
+    // Cookieから指定された名前の値を取得する関数
     getCookie: function(name) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
@@ -68,7 +68,7 @@ const app = new Vue({
 
       try {
         // CheckSession APIを呼び出してセッションの状態を確認
-        const response = await axios.post('https://functionapp073020250730134734.azurewebsites.net/api/CheckSession?', {
+        const response = await axios.post('※ここにCheckSessionのURLを記載※', {
           SessionId: sessionId
         });
 
@@ -94,4 +94,5 @@ const app = new Vue({
     redirectToLogin: function() {
       window.location.href = "index.html";
     }
-  });
+  }
+});
